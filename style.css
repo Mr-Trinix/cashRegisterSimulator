@@ -1,0 +1,81 @@
+body {
+    margin: 0 auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+    background: red;
+    height: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#arroundChange {
+    color: green;
+}
+
+.container {
+    display: flex;
+    margin-top: 10rem;
+}
+
+.container .leftPart {
+    width: 20%;
+}
+
+.container .leftPart .button {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+table {
+    margin: 0 auto;
+    width: 70%;
+}
+
+th {
+    text-align: left;
+}
+
+.container .rightPart {
+    width: 80%;
+}
+
+.value::after {
+    content: ' €';
+}
+
+table td:first-child {
+    width: 8rem;
+}
+
+.cashBox div {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto 5rem;
+    width: 70%;
+}
+
+.cashBox section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cashBox input {
+    width: 4rem;
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.coins img {
+    width: 100px;
+}
+
+.cash img {
+    width: 200px;
+}

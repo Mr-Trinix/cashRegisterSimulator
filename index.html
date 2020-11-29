@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Cash Register Simulator</title>
+</head>
+
+<body>
+    <header>
+        <h1>Cash Register Simulator</h1>
+    </header>
+
+    <div class="container">
+        <div class="leftPart">
+            <table>
+                <tr>
+                    <th>Client n°</th>
+                    <th id="client">1</th>
+                </tr>
+                <tr>
+                    <td>Receive</td>
+                    <td class="value" id="payment">1000</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td class="value" id="price">750</td>
+                </tr>
+                <tr>
+                    <td colspan="2">-------------------------</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">Change</td>
+                    <td class="value" id="change">20</td>
+                </tr>
+                <tr>
+                    <td id="arroundChange"></td>
+                </tr>
+                <tr>
+                    <td>Your change</td>
+                    <td class="value" id="yourChange"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">-------------------------</td>
+                </tr>
+                <tr>
+                    <td>Result</td>
+                    <td class="value" id="result"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="currentStatus"></td>
+                </tr>
+            </table>
+            <div class="button">
+                <button id="giveChange">Give change</button>
+                <button id="next">Next</button>
+            </div>
+        </div>
+
+        <div class="cashBox rightPart">
+            <div class="coins">
+                <section>
+                    <img src="https://eurocollection.shop/WebRoot/LaPoste/Shops/box8901/58E6/0BE5/4E6A/75E0/E27B/0A0C/05BC/8895/5_centimes_France_revers.jpg"
+                        alt="image 0.05 €">
+                    <input type="number" id="5cents" name="5cents" min="0" max="30" value="0">
+                </section>
+                <section>
+                    <img src="https://fracademic.com/pictures/frwiki/69/EUR_0.10_%282007_issue%29.png"
+                        alt="image 0.10 €">
+                    <input type="number" id="10cents" name="10cents" min="0" max="30" value="0">
+                </section>
+                <section>
+                    <img src="https://fracademic.com/pictures/frwiki/69/EUR_0.20_%282007_issue%29.png"
+                        alt="image 0.20 €">
+                    <input type="number" id="20cents" name="20cents" min="0" max="30" value="0">
+                </section>
+                <section>
+                    <img src="https://image.spreadshirtmedia.net/image-server/v1/mp/designs/149823162,width=178,height=178,version=1550615121/50-centimes-deuro.png"
+                        alt="image 0.50 €">
+                    <input type="number" id="50cents" name="50cents" min="0" max="30" value="0">
+                </section>
+                <section>
+                    <img src="https://unionsyndicale.eu/wp-content/uploads/2017/09/Image-1-euro.gif" alt="image 1 €">
+                    <input type="number" id="1euro" name="1euro" min="0" max="30" value="0">
+                </section>
+                <section>
+                    <img src="https://www.nbbmuseum.be/wp-content/uploads/2009/07/2euro-300x2922.gif" alt="image 2 €">
+                    <input type="number" id="2euros" name="2euros" min="0" max="30" value="0">
+                </section>
+            </div>
+
+            <div class="cash">
+                <section>
+                    <img src="https://delcampe-static.net/img_large/auction/000/625/663/639_002.jpg?v=1"
+                        alt="image 5 €">
+                    <input type="number" id="5euros" name="5euros" min="0" max="30" value="0">
+                </section>
+                <section>
+                    <img src="https://o2.ldh.be/image/thumb/54203f51357030e6104198a4.jpg" alt="image 10 €">
+                    <input type="number" id="10euros" name="10euros" min="0" max="30" value="0">
+                </section>
+                <section>
+                    <img src="https://images3.cgb.fr/images/billets/e17/4170237a.jpg" alt="image 20 €">
+                    <input type="number" id="20euros" name="20euros" min="0" max="30" value="0">
+                </section>
+                <section>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/EUR_50_obverse_%282002_issue%29.jpg/350px-EUR_50_obverse_%282002_issue%29.jpg"
+                        alt="image 50 €">
+                    <input type="number" id="50euros" name="50euros" min="0" max="30" value="0">
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
