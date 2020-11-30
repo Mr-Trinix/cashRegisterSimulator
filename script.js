@@ -7,7 +7,7 @@ var arroundChange = document.getElementById("arroundChange")
 var result = document.getElementsByClassName("result")
 var currentStatus = document.getElementsByClassName("currentStatus")
 var next = document.getElementById("next")
-var client = document.getElementById("client")
+var client = document.getElementsByClassName("client")
 var optionMode = document.getElementById("optionMode")
 var optionChange = document.getElementsByClassName("optionChange")
 var countSubmit = document.getElementById("countSubmit")
@@ -30,9 +30,13 @@ var listChange = [
     ["50euros", 50],
 ]
 
-if (!localStorage.totalchange && !localStorage.optionMode && !localStorage.totalcount) {
+if (!localStorage.totalchange || localStorage.totalchange == "NaN") {
     localStorage.totalchange = 1;
+}
+if (!localStorage.totalcount || localStorage.totalcount == "NaN") {
     localStorage.totalcount = 1;
+}
+if (!localStorage.totalcount) {
     localStorage.optionMode = "give_change";
 }
 
@@ -41,17 +45,17 @@ function localStorageGetStr() {
     if (localStorage.optionMode == "give_change") {
         result = "Give change"
         nameOption.textContent = "Give change"
-        client.textContent = localStorage.getItem('totalchange')
+        client[statusOptionMode].textContent = localStorage.getItem('totalchange')
         document.getElementsByClassName("optionChange")[0].style.display = "none"
         statusOptionMode = 1
     } else {
         result = "Count change"
         nameOption.textContent = "Count change"
-        client.textContent = localStorage.getItem('totalcount')
+        client[statusOptionMode].textContent = localStorage.getItem('totalcount')
         document.getElementsByClassName("optionChange")[1].style.display = "none"
         statusOptionMode = 0
     }
-    
+
     giveChange.style.backgroundColor = "black"
     giveChange.style.color = "white"
     giveChange.style.border = "none"
