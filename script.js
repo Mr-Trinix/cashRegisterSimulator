@@ -36,7 +36,7 @@ if (!localStorage.totalchange || localStorage.totalchange == "NaN") {
 if (!localStorage.totalcount || localStorage.totalcount == "NaN") {
     localStorage.totalcount = 1;
 }
-if (!localStorage.totalcount) {
+if (!localStorage.optionMode) {
     localStorage.optionMode = "give_change";
 }
 
