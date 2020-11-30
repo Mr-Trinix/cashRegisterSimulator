@@ -45,13 +45,13 @@ function localStorageGetStr() {
     if (localStorage.optionMode == "give_change") {
         result = "Give change"
         nameOption.textContent = "Give change"
-        client[statusOptionMode].textContent = localStorage.getItem('totalchange')
+        client[statusOptionMode].textContent = localStorage.totalchange
         document.getElementsByClassName("optionChange")[0].style.display = "none"
         statusOptionMode = 1
     } else {
         result = "Count change"
         nameOption.textContent = "Count change"
-        client[statusOptionMode].textContent = localStorage.getItem('totalcount')
+        client[statusOptionMode].textContent = localStorage.totalcount
         document.getElementsByClassName("optionChange")[1].style.display = "none"
         statusOptionMode = 0
     }
