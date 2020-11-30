@@ -16,6 +16,18 @@ header {
     color: green;
 }
 
+#nameOption {
+    text-align: center;
+}
+
+.switchBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 5rem;
+}
+
 .container {
     display: flex;
     margin-top: 10rem;

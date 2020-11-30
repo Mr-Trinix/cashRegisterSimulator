@@ -12,18 +12,48 @@
 <body>
     <header>
         <h1>Cash Register Simulator</h1>
+        <div class="switchBox">
+            <p>Change to : &nbsp;</p>
+            <button id="optionMode"></button>
+        </div>
     </header>
+
+    <h2 id="nameOption">Give change</h2>
 
     <div class="container">
         <div class="leftPart">
-            <table>
+            <table class="optionChange">
+                <tr>
+                    <th>Client n°</th>
+                    <th id="client">1</th>
+                </tr>
+                <tr>
+                    <td>Your count</td>
+                    <td><input type="number" value="0" id="countSubmit"></td>
+                </tr>
+                <tr>
+                    <td>Receive</td>
+                    <td class="value payment"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">-----------------------------------</td>
+                </tr>
+                <tr>
+                    <td>Result</td>
+                    <td class="value result"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="currentStatus"></td>
+                </tr>
+            </table>
+            <table class="optionChange">
                 <tr>
                     <th>Client n°</th>
                     <th id="client">1</th>
                 </tr>
                 <tr>
                     <td>Receive</td>
-                    <td class="value" id="payment">1000</td>
+                    <td class="value payment">1000</td>
                 </tr>
                 <tr>
                     <td>Price</td>
@@ -48,10 +78,10 @@
                 </tr>
                 <tr>
                     <td>Result</td>
-                    <td class="value" id="result"></td>
+                    <td class="value result"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" id="currentStatus"></td>
+                    <td colspan="2" class="currentStatus"></td>
                 </tr>
             </table>
             <div class="button">

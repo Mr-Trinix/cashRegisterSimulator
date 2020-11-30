@@ -1,14 +1,21 @@
 var price = document.getElementById("price")
-var payment = document.getElementById("payment")
+var payment = document.getElementsByClassName("payment")
 var change = document.getElementById("change")
 var yourChange = document.getElementById("yourChange")
 var giveChange = document.getElementById("giveChange")
 var arroundChange = document.getElementById("arroundChange")
-var result = document.getElementById("result")
-var currentStatus = document.getElementById("currentStatus")
+var result = document.getElementsByClassName("result")
+var currentStatus = document.getElementsByClassName("currentStatus")
 var next = document.getElementById("next")
 var client = document.getElementById("client")
+var optionMode = document.getElementById("optionMode")
+var optionChange = document.getElementsByClassName("optionChange")
+var countSubmit = document.getElementById("countSubmit")
+var nameOption = document.getElementById("nameOption")
+
 var arround = false
+var statusOptionMode = 0
+var countRandom = 0
 
 var listChange = [
     ["5cents", 0.05],
@@ -23,8 +30,33 @@ var listChange = [
     ["50euros", 50],
 ]
 
-if (!localStorage.totalchange) {
+if (!localStorage.totalchange && !localStorage.optionMode && !localStorage.totalcount) {
     localStorage.totalchange = 1;
+    localStorage.totalcount = 1;
+    localStorage.optionMode = "give_change";
+}
+
+function localStorageGetStr() {
+    let result = ""
+    if (localStorage.optionMode == "give_change") {
+        result = "Give change"
+        nameOption.textContent = "Give change"
+        client.textContent = localStorage.getItem('totalchange')
+        document.getElementsByClassName("optionChange")[0].style.display = "none"
+        statusOptionMode = 1
+    } else {
+        result = "Count change"
+        nameOption.textContent = "Count change"
+        client.textContent = localStorage.getItem('totalcount')
+        document.getElementsByClassName("optionChange")[1].style.display = "none"
+        statusOptionMode = 0
+    }
+    
+    giveChange.style.backgroundColor = "black"
+    giveChange.style.color = "white"
+    giveChange.style.border = "none"
+
+    return result
 }
 
 function pricePicker() {
@@ -36,12 +68,14 @@ function pricePicker() {
 }
 
 function initialize() {
-    let priceL = pricePicker()
-    payment.textContent = priceL[1]
-    price.textContent = priceL[0]
-    client.textContent = localStorage.getItem('totalchange')
+    optionMode.textContent = localStorageGetStr()
+    giveChange.textContent = localStorageGetStr()
 
-    let x = payment.textContent
+    let priceL = pricePicker()
+    payment[statusOptionMode].textContent = priceL[1]
+    price.textContent = priceL[0]
+
+    let x = payment[statusOptionMode].textContent
     let y = price.textContent
     let z = arroundChange
 
@@ -58,33 +92,70 @@ function initialize() {
         arroundChange.textContent = intL + "." + decimalL
     }
 
-    console.log(change)
+    payment[0].textContent = ""
 }
 
 function checkChange() {
     let myFunction = function () {
-        yourChange.textContent = countChange()
+        if (localStorageGetStr() == "Give change") {
+            yourChange.textContent = countChange()
 
-        let x = parseFloat(change.textContent)
-        let y = parseFloat(yourChange.textContent)
-        if (arround) {
-            x = parseFloat(arroundChange.textContent)
-        }
+            let x = parseFloat(change.textContent)
+            let y = parseFloat(yourChange.textContent)
+            if (arround) {
+                x = parseFloat(arroundChange.textContent)
+            }
 
-        result.textContent = (x - y).toFixed(2)
-        console.log(x - y)
+            result[statusOptionMode].textContent = (x - y).toFixed(2)
 
-        if (x - y == 0) {
-            console.log('correct')
-            currentStatus.textContent = "correct"
-            currentStatus.style.color = "green"
+            if (x - y == 0) {
+                currentStatus[statusOptionMode].textContent = "correct"
+                currentStatus[statusOptionMode].style.color = "green"
+            } else {
+                currentStatus[statusOptionMode].textContent = "wrong"
+                currentStatus[statusOptionMode].style.color = "red"
+            }
         } else {
-            console.log('wrong')
-            currentStatus.textContent = "wrong"
-            currentStatus.style.color = "red"
+            let x = parseFloat(countSubmit.value)
+            let y = parseFloat(countRandom)
+
+            payment[0].textContent = countRandom
+            result[statusOptionMode].textContent = (y - x).toFixed(2)
+
+            if (x == y) {
+                currentStatus[statusOptionMode].textContent = "correct"
+                currentStatus[statusOptionMode].style.color = "green"
+            } else {
+                currentStatus[statusOptionMode].textContent = "wrong"
+                currentStatus[statusOptionMode].style.color = "red"
+            }
         }
     }
-    giveChange.addEventListener('click', myFunction, false)
+    giveChange.addEventListener('click', myFunction, true)
+}
+
+function randomPrice() {
+    let result = 0
+    let x = document.getElementsByClassName("rightPart")[0].getElementsByTagName("input")
+
+    for (let i = 0; i < x.length; i++) {
+        if (localStorageGetStr() != "Give change") {
+            x[i].setAttribute("disabled", "true")
+            x[i].value = Math.floor(Math.random() * 5)
+        }
+    }
+
+    for (let i = 0; i < x.length; i++) {
+        if (x[i].value > 0) {
+            console.log(x[i].value, ' ', x[i].name)
+            for (let j = 0; j < listChange.length; j++) {
+                if (listChange[j][0] == x[i].name) {
+                    result += x[i].value * listChange[j][1]
+                }
+            }
+        }
+    }
+    countRandom = result
 }
 
 function countChange() {
@@ -101,16 +172,37 @@ function countChange() {
             }
         }
     }
-
     return result
 }
 
 function nextChange() {
     let myFunction = function () {
-        localStorage.totalchange = parseInt(localStorage.totalchange) + 1
+        if (localStorageGetStr() == "Give change") {
+            localStorage.totalchange = parseInt(localStorage.totalchange) + 1
+        } else {
+            localStorage.totalcount = parseInt(localStorage.totalcount) + 1
+        }
         window.location.href = location
     }
     next.addEventListener('click', myFunction, false)
+}
+
+function optionModeFunc() {
+    let myFunction = function () {
+
+        if (localStorage.optionMode == "give_change") {
+            localStorage.optionMode = "count_change"
+            optionMode.textContent = "Count change"
+            giveChange.textContent = "Count change"
+        } else {
+            localStorage.optionMode = "give_change"
+            optionMode.textContent = "Give change"
+            giveChange.textContent = "Give change"
+        }
+        window.location.href = location
+    }
+
+    optionMode.addEventListener('click', myFunction, false)
 }
 
 function main() {
@@ -118,6 +210,8 @@ function main() {
     checkChange()
     countChange()
     nextChange()
+    optionModeFunc()
+    randomPrice()
 }
 
 main()
