@@ -72,7 +72,11 @@ function pricePicker() {
 }
 
 function initialize() {
-    optionMode.textContent = localStorageGetStr()
+    if (localStorageGetStr() == "Give change") {
+        optionMode.textContent = "Count change"
+    } else {
+        optionMode.textContent = "Give change"
+    }
     giveChange.textContent = localStorageGetStr()
 
     let priceL = pricePicker()
