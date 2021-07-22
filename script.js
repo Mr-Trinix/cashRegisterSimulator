@@ -27,7 +27,7 @@ var listChange = [
     ["5euros", 5],
     ["10euros", 10],
     ["20euros", 20],
-    ["50euros", 50],
+    ["50euros", 50]
 ]
 
 if (!localStorage.totalchange || localStorage.totalchange == "NaN") {
@@ -68,7 +68,7 @@ function pricePicker() {
     let priceL = Math.floor(Math.random() * (10000 - 0) + 0) / 100
     let paymentL = (priceL + extraPaidL).toFixed(2)
     console.log("extra :", extraPaidL, " | price :", priceL, " | payment :", paymentL)
-    return [priceL, paymentL]
+    return [priceL.toFixed(2), paymentL]
 }
 
 function initialize() {
