@@ -20,6 +20,10 @@
 
     <h2 id="nameOption">Give change</h2>
 
+    <div class="loaderContainer">
+        <div class="loader"></div>
+    </div>
+
     <div class="container">
         <div class="leftPart">
             <table class="optionChange">
@@ -142,6 +146,13 @@
     <footer>
 
     </footer>
+    <script>
+        document.getElementsByClassName("container")[0].style.display = "none";
+        setTimeout(() => {
+            document.getElementsByClassName("container")[0].style.display = "flex";
+            document.getElementsByClassName("loaderContainer")[0].style.display = "none";
+        }, 1000)
+    </script>
     <script src="script.js"></script>
 </body>
 
